@@ -91,20 +91,15 @@ class Game {
 
 
   gerenciarBotao() {
-
     this.botaoReset.mousePressed( () => {
-      
       database.ref('/').set({
         playerCount: 0,
         gameState: 0,
         players: {}
       })
-
       window.location.reload()
-
     } )
   }
-
 
   criarRecompensas(numeroSprites, imagemSprite, escala, grupoSprites) {
 
@@ -140,16 +135,15 @@ class Game {
     this.handleElements()
     this.gerenciarBotao()
     
-
+    if (allPlayers !== undefined) {
     image(track, 0, -height*5, width, height*6)
+    this.gerenciarPlacar()
 
     Player.getPlayersInfo()
 
     var indice = 0;
 
     for (var jogador in allPlayers) {
-
-      this.gerenciarPlacar()
 
       indice += 1
 
@@ -168,12 +162,13 @@ class Game {
         this.gerenciarCombustivel(indice)
         this.gerenciarMoedas(indice)
       }
-
+    
     }
 
     this.gerenciarControleJogador()
 
     drawSprites()
+  }
   }
 
 
